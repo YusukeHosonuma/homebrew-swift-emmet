@@ -9,6 +9,6 @@ class SwiftEmmet < Formula
   license "MIT"
 
   def install
-    bin.install "swift-emmet"    
+    bin.install "swift-emmet"
   end
 end
