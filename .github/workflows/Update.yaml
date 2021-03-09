@@ -5,7 +5,7 @@ on:
     types: [released]
 
 jobs:
-  myEvent:
+  update-formula:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,17 +15,17 @@ jobs:
           VERSION=$(echo ${{ github.event.client_payload.ref  }} | sed -e "s|refs/tags/||g")
           URL="https://github.com/YusukeHosonuma/swift-emmet/releases/download/$VERSION/swift-emmet"
           data=$(cat <<EOF > Formula/swift-emmet.rb
-            class SwiftEmmet < Formula
-              desc "A CLI tool that generate struct or class by simple-syntax"
-              homepage "https://github.com/YusukeHosonuma/swift-emmet"
-              url "$URL"
-              sha256 "${{ github.event.client_payload.sha256 }}"
-              license "MIT"
-
-              def install
-                bin.install "swift-emmet"
-              end
+          class SwiftEmmet < Formula
+            desc "A CLI tool that generate struct or class by simple-syntax"
+            homepage "https://github.com/YusukeHosonuma/swift-emmet"
+            url "$URL"
+            sha256 "${{ github.event.client_payload.sha256 }}"
+            license "MIT"
+            
+            def install
+              bin.install "swift-emmet"
             end
+          end
           EOF
           )
 
